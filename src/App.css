@@ -13,6 +13,10 @@ body{font-family: Inter, system-ui, Arial; background:var(--bg); margin:0; color
 .main{padding:20px; max-width:1100px; margin:0 auto;}
 .card{background:var(--card); padding:16px; border-radius:8px; box-shadow:0 1px 6px rgba(16,24,40,0.04); margin-bottom:16px;}
 .login-card{max-width:420px; margin:40px auto;}
+.login-card h2{text-align:center;}
+.login-card .btn{display:block; margin:16px auto 0; width:fit-content;}
+.login-card form{display:flex; flex-direction:column; gap:12px;}
+.login-card input{width:100%; box-sizing:border-box;}
 .form{display:flex; flex-direction:column; gap:8px;}
 .form-inline{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
 input, select{padding:8px; border-radius:6px; border:1px solid #ddd;}
