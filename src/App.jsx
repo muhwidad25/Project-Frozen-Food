@@ -10,6 +10,7 @@ import './App.css';
 export default function App() {
   const [user, setUser] = useState(null);
   const [route, setRoute] = useState('dashboard'); // 'dashboard' | 'input' | 'report' | 'login'
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     const saved = loadUserFromStorage();
@@ -20,9 +21,15 @@ export default function App() {
     }
   }, []);
 
+  const handleRouteChange = (newRoute) => {
+    setRoute(newRoute);
+    setRefreshKey(prev => prev + 1);
+  };
+
   const handleLogin = (userObj) => {
     setUser(userObj);
     setRoute('dashboard');
+    setRefreshKey(prev => prev + 1);
   };
 
   const handleLogout = () => {
@@ -33,12 +40,12 @@ export default function App() {
 
   return (
     <div className="app">
-      <Navbar user={user} onRouteChange={setRoute} onLogout={handleLogout} />
+      <Navbar user={user} onRouteChange={handleRouteChange} onLogout={handleLogout} />
       <main className="main">
         {!user && route === 'login' && <LoginForm onLogin={handleLogin} />}
-        {user && route === 'dashboard' && <Dashboard />}
+        {user && route === 'dashboard' && <Dashboard key={`dashboard-${refreshKey}`} />}
         {user && route === 'input' && <TransactionForm />}
-        {user && route === 'report' && <ReportView />}
+        {user && route === 'report' && <ReportView key={`report-${refreshKey}`} />}
         {!user && route !== 'login' && (
           <div className="not-auth">Silakan login terlebih dahulu.</div>
         )}

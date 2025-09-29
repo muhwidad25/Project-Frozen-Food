@@ -28,9 +28,9 @@ export default function LoginForm({ onLogin }) {
       <h2>Login</h2>
       <form onSubmit={submit}>
         <label>Username</label>
-        <input value={username} onChange={e => setUsername(e.target.value)} required />
+        <input value={username} onChange={e => setUsername(e.target.value)} required autoComplete="username" />
         <label>Password</label>
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required autoComplete="current-password" />
         {error && <div className="error">{error}</div>}
         <button className="btn" type="submit">Login</button>
       </form>
